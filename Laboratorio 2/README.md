@@ -1,3 +1,4 @@
+<h1>Laboratório 2</h1>
 Implementação sequencial do problema de multiplicação de matrizes com tomada de tempos e  avaliação da possibilidade de ganho de desempenho com uma versão concorrente.<>
 
 Os códigos e vídeo-aulas disponíveis aqui são para orientar o desenvolvimento da solução sequencial (vídeo-aulas 2 e 3) e  como fazer a tomada de tempo interno (vídeo-aula 6). A versão concorrente da multiplicação de matrizes  será desenvolvida no Laboratório 3.

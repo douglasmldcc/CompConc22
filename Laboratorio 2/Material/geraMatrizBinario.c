@@ -43,7 +43,7 @@ int main(int argc, char*argv[]) {
 
    //imprimir na saida padrao a matriz gerada
    #ifdef TEXTO
-   for(int i=0; i<linhas; i++) {s
+   for(int i=0; i<linhas; i++) {
       for(int j=0; j<colunas; j++)
         fprintf(stdout, "%.6f ", matriz[i*colunas+j]);
       fprintf(stdout, "\n");

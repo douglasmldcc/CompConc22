@@ -1,14 +1,14 @@
 <h1>Laboratório 2</h1>
 
-
+</br>
 Export Prompt de Comando
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Digite: C:\Users\dougl\Documents\UFRJ\CompConc22\Laboratorio 2\geraMatBin.exe <linhas> <colunas> <arquivo saida A> <arquivo saida B>
-PS C:\Users\dougl\Documents\UFRJ\CompConc22\Laboratorio 2> & .\"geraMatBin.exe" 500 500 500a 500b
-PS C:\Users\dougl\Documents\UFRJ\CompConc22\Laboratorio 2> & .\"geraMatBin.exe" 500 500 5a 5b    
-PS C:\Users\dougl\Documents\UFRJ\CompConc22\Laboratorio 2> & .\"geraMatBin.exe" 1000 1000 1a 1b
-PS C:\Users\dougl\Documents\UFRJ\CompConc22\Laboratorio 2> & .\"geraMatBin.exe" 2000 2000 2a 2b
+PS C:\Users\dougl\Documents\UFRJ\CompConc22\Laboratorio 2> & .\"geraMatBin.exe" 500 500 500a 500b</br>
+PS C:\Users\dougl\Documents\UFRJ\CompConc22\Laboratorio 2> & .\"geraMatBin.exe" 500 500 5a 5b    </br>
+PS C:\Users\dougl\Documents\UFRJ\CompConc22\Laboratorio 2> & .\"geraMatBin.exe" 1000 1000 1a 1b</br>
+PS C:\Users\dougl\Documents\UFRJ\CompConc22\Laboratorio 2> & .\"geraMatBin.exe" 2000 2000 2a 2b</br>
   
 PS C:\Users\dougl\Documents\UFRJ\CompConc22\Laboratorio 2> & .\"multMatBin.exe" 5a 5b
 

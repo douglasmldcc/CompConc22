@@ -27,7 +27,7 @@ int main(int argc, char*argv[]) {
    colunas = atoi(argv[2]);
    tam = linhas * colunas;
 
-   //aloca memoria para a matriz
+   // Aloca memoria para a matriz
    matriz = (float*) malloc(sizeof(float) * tam);
    if(!matriz) {
       fprintf(stderr, "Erro de alocao da memoria da matriz\n");
@@ -38,7 +38,17 @@ int main(int argc, char*argv[]) {
       fprintf(stderr, "Erro de alocao da memoria da matriz\n");
       return 2;
    }
-   //preenche a matriz com valores float aleatorios
+   // Criação de matriz teste preenchida de 1
+   /*
+   ///////////////////////////////////////////////////////////////
+   for(long int i=0; i<tam; i++) {
+       *(matriz+i) = 2;
+       *(matrizB+i) = 2;
+   }
+   ///////////////////////////////////////////////////////////////
+   */
+
+   //Preenche a matriz com valores float aleatorios
    //randomiza a sequencia de numeros aleatorios
    
    srand(time(NULL));
@@ -75,6 +85,7 @@ int main(int argc, char*argv[]) {
       fprintf(stderr, "Erro de abertura do arquivo\n");
       return 3;
    }
+   
    //escreve numero de linhas e de colunas
    ret = fwrite(&linhas, sizeof(int), 1, descritorArquivo);
 

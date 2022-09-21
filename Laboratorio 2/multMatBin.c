@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-
 #include "timer.h"
+
 
 int main(int argc, char*argv[]) {
    float *matriz; //matriz que será carregada do arquivo
@@ -25,21 +25,24 @@ int main(int argc, char*argv[]) {
       fprintf(stderr, "Digite: %s <arquivo entrada A> <arquivo entrada B>\n", argv[0]);
       return 1;
    }
-    GET_TIME(inicioi);
-   //abre o arquivo para leitura binaria
+   GET_TIME(inicioi);   //Pega o tempo inicial
+
+   //abre os arquivos para leitura binaria
+
    descritorArquivo = fopen(argv[1], "rb");
    if(!descritorArquivo) {
       fprintf(stderr, "Erro de abertura do arquivo\n");
       return 2;
    }
-   //abre o arquivo para leitura binaria Matriz B
+
    descritorArquivoB = fopen(argv[2], "rb");
    if(!descritorArquivoB) {
       fprintf(stderr, "Erro de abertura do arquivo\n");
       return 2;
    }
 
-   //le as dimensoes da matriz
+   //le as dimensoes da matriz A
+
    ret = fread(&linhas, sizeof(int), 1, descritorArquivo);
    if(!ret) {
       fprintf(stderr, "Erro de leitura das dimensoes da matriz arquivo \n");
@@ -51,13 +54,8 @@ int main(int argc, char*argv[]) {
       return 3;
    }
 
-    msaida = (float *)malloc(sizeof(float) * linhas * colunas);
-    if(msaida == NULL){
-        puts("ERROR === 'malloc'\n");
-        return 2;
-    }
-
    //le as dimensoes da matriz B
+
    retB = fread(&linhas, sizeof(int), 1, descritorArquivoB);
    if(!retB) {
       fprintf(stderr, "Erro de leitura das dimensoes da matriz arquivo \n");
@@ -71,7 +69,8 @@ int main(int argc, char*argv[]) {
 
    tam = linhas * colunas; //calcula a qtde de elementos da matriz
 
-   //aloca memoria para a matriz
+   //aloca memoria para as matrizes
+   // Matriz A
    matriz = (float*) malloc(sizeof(float) * tam);
    if(!matriz) {
       fprintf(stderr, "Erro de alocao da memoria da matriz\n");
@@ -83,8 +82,15 @@ int main(int argc, char*argv[]) {
       fprintf(stderr, "Erro de alocao da memoria da matriz\n");
       return 3;
    }
+   // Matriz de saida
+   msaida = (float *)malloc(sizeof(float) * tam);
+    if(msaida == NULL){
+        puts("ERROR === 'malloc'\n");
+        return 2;
+   }
 
    //carrega a matriz de elementos do tipo float do arquivo
+   // Matriz A
    ret = fread(matriz, sizeof(float), tam, descritorArquivo);
    if(ret < tam) {
       fprintf(stderr, "Erro de leitura dos elementos da matriz\n");
@@ -98,13 +104,14 @@ int main(int argc, char*argv[]) {
    }
     /*
    //imprime a matriz na saida padrao
-   
+
+   printf("Matriz A \n");
    for(int i=0; i<linhas; i++) { 
       for(int j=0; j<colunas; j++)
         fprintf(stdout, "%.6f ", matriz[i*colunas+j]);
       fprintf(stdout, "\n");
    }
-   //imprime a matriz na saida padrao
+
    printf("Matriz B \n");
    for(int i=0; i<linhas; i++) { 
       for(int j=0; j<colunas; j++)
@@ -112,43 +119,45 @@ int main(int argc, char*argv[]) {
       fprintf(stdout, "\n");
    }
     */
+   printf("Multiplicacao de matrizes %d x %d \n",linhas , colunas);
+   //multiplica as matrizes
+   GET_TIME(fimi);
+   deltai = fimi - inicioi;
+   printf("\nTempo de inicializacao:%lf",deltai,"\n");
 
-    //multiplica as matrizes
-    GET_TIME(fimi);
-    deltai = fimi - inicioi;
-    printf("\nTempo de inicializacao:%lf",deltai,"\n");
+   GET_TIME(inicio);
 
-    GET_TIME(inicio);
-
-    for(int i = 0; i < linhas; i++){
-        for( int j = 0; j<linhas; j++){
-            for(int k = 0; k<colunas; k++){
-                msaida[i*linhas+j] += matriz[i*(linhas)+k] * matrizB[k*(linhas)+j];
-            }
-        }           
-    }
-    GET_TIME(iniciof);
-    GET_TIME(fim);
-    delta = fim - inicio;
-    printf("\nTempo de multiplicacao:%lf",delta,"\n");
-        
-    /*
-   //imprime a matriz na saida padrao
+   for(int i = 0; i < linhas; i++){
+      for( int j = 0; j<linhas; j++){
+         for(int k = 0; k<colunas; k++){
+               msaida[i*linhas+j] += matriz[i*(linhas)+k] * matrizB[k*(linhas)+j];
+         }
+      }           
+   }
+   GET_TIME(iniciof);
+   GET_TIME(fim);
+   delta = fim - inicio;
+   printf("\nTempo de multiplicacao:%lf",delta,"\n");
+   /*   
    printf("\nMatriz de saida \n");
    for(int i=0; i<linhas; i++) { 
       for(int j=0; j<colunas; j++)
         fprintf(stdout, "%.6f ", msaida[i*colunas+j]);
       fprintf(stdout, "\n");
    }
-    */
+   */
+   GET_TIME(fimf);
+   deltai = fimf - iniciof;
+
+   printf("\nTempo de finalizacao:%lf",deltaf,"\n");
+   puts("\n");
+
    //finaliza o uso das variaveis
+
    fclose(descritorArquivo);
    free(matriz);
    fclose(descritorArquivoB);
    free(matrizB);
    
-    GET_TIME(fimf);
-    deltai = fimf - iniciof;
-    printf("\nTempo de finalizacao:%lf",deltaf,"\n");
    return 0;
 }

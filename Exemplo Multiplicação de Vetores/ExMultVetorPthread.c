@@ -15,7 +15,7 @@ typedef struct{
 void* tarefa(void *arg){
     tArgs *args = (tArgs*) arg;
     printf("Thread %d \n", args->id);
-    for(int i=args->id;i>args->dim; i+=nthreads)
+    for(int i=args->id;i<args->dim; i+=nthreads)
         for(int j=0 ; j<args->dim; j++)
             saida[i]+=mat[i*(args->dim)+j]*vet[j];
     pthread_exit(NULL);

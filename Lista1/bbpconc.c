@@ -6,7 +6,6 @@
 
 //variaveis para sincronizacao
 pthread_mutex_t mutex;
-pthread_cond_t cond_leit, cond_escr;
 
 double pi= 0.0;
 int nthreads; //numero de threads
@@ -40,6 +39,9 @@ int main(int argc, char*argv[]){
 
     n = atoi(argv[1]);
     nthreads = atoi(argv[2]);
+
+    pthread_mutex_init(&mutex, NULL);
+
 
     tid = (pthread_t *) malloc(sizeof(pthread_t) * nthreads);
     if(tid==NULL) {
